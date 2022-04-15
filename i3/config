@@ -60,7 +60,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # exec --no-startup-id nm-applet
 
 # Set desktop background
-exec_always --no-startup-id feh --bg-fill $HOME/Wallpapers/bash-rm-rf-alt2.png
+exec_always --no-startup-id feh --bg-fill $HOME/Wallpapers/bash-rm-rf-alt3.png
 # exec_always --no-startup-id nitrogen --restore
 
 # Start firefox on Ctrl+Alt+F
@@ -73,8 +73,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Make a screenshot of selection
+bindsym --release $mod+Print exec --no-startup-id scrot -b -z -p -s "$HOME/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png"
 # Screenshot
-bindsym Print exec --no-startup-id scrot -p -z -b ~/Pictures/Screenshots/Screenshot-$(date +%Y-%M-%d_%H-%M-%S).png 
+bindsym Print exec --no-startup-id scrot -b -z -p "$HOME/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png"
+# Screenshot of active window
+bindsym Shift+Print exec --no-startup-id scrot -u -b -z -p "$HOME/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -91,7 +95,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+x exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'terminus-12' -p 'dmenu%'"
 
 # Launch rofi on $mod+d
-bindsym $mod+x exec rofi -show run
+bindsym $mod+x exec "rofi -show"
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
