@@ -6,6 +6,7 @@
 - polybar
 - neofetch
 - dunst
+- rofi
 
 ## Gentoo packages you need to get this working ( probably not the full list )
 ```
