@@ -60,18 +60,17 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # exec --no-startup-id nm-applet
 
 # Set desktop background
-exec_always --no-startup-id feh --bg-fill $HOME/Wallpapers/bash-rm-rf-alt3.png
+exec_always --no-startup-id feh --bg-tile $HOME/Wallpapers/bash-rm-rf-alt3.png
 # exec_always --no-startup-id nitrogen --restore
 
 # Start firefox on Ctrl+Alt+F
 bindsym $mod+Shift+f exec firefox-bin
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Current microphone state - $(pactl get-source-mute @DEFAULT_SOURCE@)"
 
 # Make a screenshot of selection
 bindsym --release $mod+Print exec --no-startup-id scrot -b -z -p -s "$HOME/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png"
